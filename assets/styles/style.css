@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro&display=swap');
+
+body {
+	font-family: 'Lato', sans-serif;
+	color: #585858;
+	background: #E7EFF2;
+}
+
+header {
+	font-family: 'Source Sans Pro', sans-serif;
+	background: white;
+	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+footer {
+	background-color: white;
+	padding: 35px;
+}
+
+footer p {
+	text-align: center;
+}
+
+.nav-menu li {
+	display: inline-block;
+	margin: 0;
+}
+
+.nav-menu ul {
+	display: flex;
+}
+
+.logo {
+	margin: auto 50px;
+	display: inline-block;
+}
+
+.nav-menu li a {
+	transition: 400ms;
+	display: inline-block;
+	padding: 20px;
+	color: #566B73;
+	margin: 0;
+	text-decoration: none;
+}
+
+.nav-menu li a:hover {
+	transition: 400ms;
+	background-color: #C3C3C3;
+}
+
+.nav-menu .active {
+	background-color: #F47216;
+	color: white;
+}
+
+main {
+	background: white;
+	box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	padding: 30px;
+	margin: 30px 50px;
+}
+
+form th {
+	text-align: right;
+	font-size: 14px;
+}
+
+form input {
+	padding: 10px;
+	width: 90%;
+	margin: 5px;
+	border-radius: 5px;
+	border: 1.5px solid #DBDEE0;
+	outline: none;
+}
+
+form .readonly {
+	background-color: #F2F2F2;
+}
+
+/* START BUTTONS */
+
+.btn {
+	border: 1.5px solid #F47216;
+	padding: 10px;
+	border-radius: 5px;
+	transition: 0.5s;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.btn:hover {
+	transition: 0.5s;
+}
+
+.btn-search {
+	background-color: #F47216;
+	color: white;
+}
+
+.btn-search:hover {
+	background-color: white;
+	color: #F47216;
+}
+
+.btn-tambah-produk, .btn-check-out {
+	float: right;
+}
+
+.btn-tambah-produk, .btn-check-out, .btn-page-nav {
+	margin-top: 10px;
+	background-color: white;
+	color: #F47216;
+}
+
+.btn-tambah-produk:hover, .btn-check-out:hover, .btn-page-nav:hover {
+	background-color: #F47216;
+	color: white;
+}
+
+.btn-tambahkan-produk, .btn-tambahkan-transaksi {
+	background-color: #F47216;
+	color: white;
+	float: right;
+}
+
+.btn-tambahkan-produk:hover, .btn-tambahkan-transaksi:hover {
+	background-color: white;
+	color: #F47216;
+}
+
+/* END BUTTONS */
+
+.tambah-produk, .ringkasan-transaksi {
+	float: left;
+	width: 45%;
+	padding: 0 20px;
+}
+
+.tambah-produk form, .ringkasan-transaksi form {
+	width: 100%;
+	text-align: right;
+}
+
+.tambah-produk table, .ringkasan-transaksi table {
+	width: 100%;
+}
+
+/* START TABLE DIBELI */
+.dibeli {
+	margin: 75px auto 10px;
+	width: 80%;
+}
+
+.dibeli td {
+	border: 1.5px solid #E5E5E5;
+	padding: 7px;
+	text-align: center;
+}
+
+.dibeli th {
+	color: #999;
+	background-color: #F6F6F6;
+	border: 1.5px solid #E5E5E5;
+	padding: 12px 10px;
+	font-weight: 600;
+	text-decoration: none;
+}
+/* END TABLE DIBELI */
+
+/* START TABLE PRODUK DAN LAPORAN */
+.table-produk, .table-laporan {
+	margin: auto;
+	width: 100%;
+}
+
+.table-produk td, .table-laporan td {
+	border: 1.5px solid #E5E5E5;
+	padding: 7px;
+	text-align: center;
+}
+
+.table-produk th, .table-laporan th {
+	color: #999;
+	background-color: #F6F6F6;
+	border: 1.5px solid #E5E5E5;
+	padding: 12px 10px;
+	font-weight: 600;
+	text-decoration: none;
+}
+/* END TABLE PRODUK DAN TRANSAKSI */
+
+/* START INPUT DATA COUNT */
+
+.input-data-count {
+	width: 20px;
+}
+
+.form-data-count {
+	display: inline-block;
+}
+
+/* END INPUT DATA COUNT*/
+
+/* START CONTENT PRODUK */
+
+.content-produk, .content-laporan {
+	width: 80%;
+	margin: auto;
+}
+
+/* START CONTENT PRODUK*/
+
+/* START MODAL */
+
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 40% /* Could be more or less, depending on screen size */
+}
+
+.modal .form-penambahan-produk th {
+	width: 20%;
+}
+
+.modal .form-penambahan-produk table {
+	width: 100%;
+}
+
+.modal .btn-tambah-produk {
+	float: right;
+	margin-right: 12px;
+}
+
+/* END MODAL */
+
+
+/* START ACTION BUTTON */
+
+.action-hapus, .action-edit {
+	text-decoration: none;
+}
+
+.action-hapus {
+	background-color: #e74c3c;
+	color: white;
+	padding: 4px;
+	margin: 5px;
+	font-size: 13px;
+	border-radius: 2px;
+}
+
+.action-edit {
+	background-color: #2980b9;
+	color: white;
+	padding: 4px;
+	margin: 5px;
+	font-size: 13px;
+	border-radius: 2px;
+}
+
+/* END ACTION BUTTON */
+
+/* START SUCCESS NOTIFICATION */
+
+.modal-success {
+	width: 25%;
+}
+
+.success-notification {
+	margin: auto;
+	text-align: center;
+	font-size: 18px;
+}
+
+.btn-confirmation {
+	background-color: #27ae60;
+	color: white;
+	border: 2px solid #27ae60;
+}
+
+.btn-confirmation:hover {
+	background-color: white;
+	color: #27ae60;
+}
+
+.success-notification-text {
+	margin: 30px;
+}
+
+.notification-icon {
+	color: #27ae60;
+	font-size: 60px;
+}
+
+/* END SUCCESS NOTIFICATION */
