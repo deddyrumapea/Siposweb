@@ -1,3 +1,7 @@
+<?php
+require 'functions.php';
+$produk = query("SELECT * FROM produk");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,14 +40,20 @@
 					<th>Stock</th>
 					<th>Aksi</th>
 				</tr>
+
+				<?php $i = 1; ?>
+				<?php foreach ($produk as $row) : ?>
 				<tr>
-					<td>1</td>
-					<td>P723</td>
-					<td>Terasi Udang Mamasuka 120g</td>
-					<td>Rp1,200.00</td>
-					<td>2</td>
+					<td><?= $i; ?></td>
+					<td><?=$row["id"]; ?></td>
+					<td><?=$row["nama"]; ?></td>
+					<td>Rp<?=number_format($row["harga"], 2, ",", "."); ?></td>
+					<td><?=$row["stock"]; ?></td>
 					<td><a href="#" class="action-edit"><i class="fas fa-edit"></i> Edit</a> <a href="#" class="action-hapus"><i class="fas fa-trash"></i> Hapus</a></td>
 				</tr>
+				<?php $i++; ?>
+				<?php endforeach; ?>
+
 			</table>
 			<button class="btn btn-page-nav"><i class="fas fa-angle-left"></i> Sebelumnya</button>
 			<button class="btn btn-page-nav">Selanjutnya <i class="fas fa-angle-right"></i></button>

@@ -1,3 +1,8 @@
+<?php 
+require 'functions.php';
+$transaksi = query("SELECT * FROM laporan_transaksi");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,14 +45,20 @@
 					<th>Keterangan</th>
 					<th>Aksi</th>
 				</tr>
+
+				<?php $i = 1; ?>
+				<?php foreach ($transaksi as $row) : ?>
 				<tr>
-					<td>1</td>
-					<td>54IZBC4SUA</td>
-					<td>01/11/2020 09:20AM</td>
-					<td>Rp27,500.00</td>
-					<td></td>
+					<td><?= $i ?></td>
+					<td><?= $row["id"]; ?></td>
+					<td><?= $row["tanggal"]; ?></td>
+					<td>Rp<?=number_format($row["total"], 2, ",", "."); ?></td>
+					<td><?= $row["keterangan"]; ?></td>
 					<td><a href="#" class="action-edit"><i class="fas fa-edit"></i> Edit</a> <a href="#" class="action-hapus"><i class="fas fa-trash"></i> Hapus</a></td>
 				</tr>
+				<?php $i++; ?>
+				<?php endforeach; ?>
+
 			</table>
 			<button class="btn btn-page-nav"><i class="fas fa-angle-left"></i> Sebelumnya</button>
 			<button class="btn btn-page-nav">Selanjutnya <i class="fas fa-angle-right"></i></button>
