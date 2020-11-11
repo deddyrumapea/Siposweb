@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Transaksi - SIPOSWEB</title>
+	<title>Laporan - SIPOSWEB</title>
 	<link rel="stylesheet" type="text/css" href="assets/styles/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
 </head>
