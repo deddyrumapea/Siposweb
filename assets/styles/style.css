@@ -410,6 +410,8 @@ form .readonly {
 }
 
 .login-siposweb-title {
+	font-size: 23px;
+	font-weight: bold;
 	margin-bottom: 20px;
 	color: white;
 }
