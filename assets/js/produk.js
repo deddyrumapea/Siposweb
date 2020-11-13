@@ -1,29 +1,59 @@
+// MODAL TAMBAH PRODUK START
+var btnTambahProduk = document.getElementById("btn-tambahkan-produk");
 var modalTambahProduk = document.getElementById("modal-tambah-produk");
-var btnTambahkanProduk = document.getElementById("btn-tambahkan-produk");
-var btnClose = document.getElementById("submit-produk");
 
-btnTambahkanProduk.onclick = function() {
+// Tampilkan modal box jika tombol diklik
+btnTambahProduk.onclick = function (event) {
 	modalTambahProduk.style.display = "block";
 }
 
-btnClose.onclick = function() {
-	modalTambahProduk.style.display = "none";
-	submitProduk();
-}
 
-window.onclick = function(event) {
-	if (event.target == modalTambahProduk) {
-		modalTambahProduk.style.display = "none";
+// MODAL TAMBAH PRODUK END
+
+// MODAL EDIT PRODUK START
+var modalEditProduk = document.getElementById("modal-edit-produk");
+
+function editProduk(data){
+	modalEditProduk.style.display = "block"; // Tampilkan modal box
+	var inputs = modalEditProduk.getElementsByTagName('input');
+
+	// Populate form dengan data lama
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].value = data[i];
 	}
 }
+// MODAL EDIT PRODUK END
 
+// MODAL NOTIFICATIONS START
 var modalSuccess = document.getElementById("modal-product-added");
+var modalFailed = document.getElementById("modal-product-add-failed");
 var btnConfirmation = document.getElementById("btn-confirmation");
 
-btnConfirmation.onclick = function() {
-  modalSuccess.style.display = "none";
+function closeModal() {
+	modalSuccess.style.display = "none";
+	modalFailed.style.display = "none";
 }
 
-function submitProduk(){
-	modalSuccess.style.display = "block";
+// MODAL NOTIFICATIONS END
+
+// MODAL DELETE START
+var modalDelete = document.getElementById("modal-delete");
+var btnDelete = document.getElementById("btn-hapus-produk");
+var btnConfirmDelete = document.getElementById("btn-confirm-hapus");
+
+function hapusProduk(id) {
+	modalDelete.style.display = "block";
+	btnConfirmDelete.href = "hapus_produk.php?id=" + id;
+}
+
+// MODAL DELETE END
+
+// Sembunyikan modal box jika area di luar box diklik
+window.onclick = function(event) {
+	var modals = document.getElementsByClassName("modal");
+	for (var i = 0; i < modals.length; i++) {
+		if (event.target == modals[i]) {
+			modals[i].style.display = "none";
+		}
+	}
 }
