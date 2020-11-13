@@ -1,6 +1,6 @@
 <?php 
 require 'functions.php';
-$transaksi = query("SELECT * FROM laporan_transaksi");
+$transaksi = queryRead("SELECT * FROM laporan_transaksi");
 ?>
 
 <!DOCTYPE html>
