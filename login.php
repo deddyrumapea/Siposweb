@@ -1,3 +1,11 @@
+<?php 
+
+if (isset($_POST["submit"])) {
+	echo "hallo";
+}
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +21,7 @@
 		<div class="login-box">
 			<h2 class="login-title">Login</h2>
 			<div>
-				<form>
+				<formk action="" method="post">
 					<input type="username" placeholder="Username" class="form-login" required>
 					<input type="password" placeholder="Password" class="form-login" required>
 					<input type="submit" value="Login" class="btn-login">
