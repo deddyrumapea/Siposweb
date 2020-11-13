@@ -1,6 +1,6 @@
 <?php 
 
-// koneksi ke database
+// Koneksi ke database
 $conn = mysqli_connect("localhost", "root", "", "siposweb");
 
 
