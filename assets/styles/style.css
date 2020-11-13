@@ -9,6 +9,9 @@ header {
 	font-family: 'Source Sans Pro', sans-serif;
 	background: white;
 	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
 
 footer {
@@ -58,7 +61,7 @@ main {
 	box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.2);
 	border-radius: 5px;
 	padding: 30px;
-	margin: 30px 50px;
+	margin: 85px 50px 30px;
 }
 
 form th {
@@ -77,12 +80,14 @@ form input {
 
 form .readonly {
 	background-color: #F2F2F2;
+	color : #7f8c8d;
 }
 
 
 /* START BUTTONS */
 
 .btn {
+	cursor: pointer;
 	border: 1.5px solid #F47216;
 	padding: 10px;
 	border-radius: 5px;
@@ -106,12 +111,14 @@ form .readonly {
 }
 
 .btn-tambah-produk,
+.btn-edit-produk
 .btn-check-out {
 	float: right;
 }
 
 .btn-tambah-produk,
 .btn-check-out,
+.btn-edit-produk,
 .btn-page-nav {
 	margin-top: 10px;
 	background-color: white;
@@ -120,6 +127,7 @@ form .readonly {
 
 .btn-tambah-produk:hover,
 .btn-check-out:hover,
+.btn-edit-produk:hover,
 .btn-page-nav:hover {
 	background-color: #F47216;
 	color: white;
@@ -256,7 +264,6 @@ form .readonly {
 	/* Full width */
 	height: 100%;
 	/* Full height */
-	overflow: auto;
 	/* Enable scroll if needed */
 	background-color: rgb(0, 0, 0);
 	/* Fallback color */
@@ -282,7 +289,7 @@ form .readonly {
 	width: 100%;
 }
 
-.modal .btn-tambah-produk {
+.modal .btn-tambah-produk, .modal .btn-edit-produk {
 	float: right;
 	margin-right: 12px;
 }
@@ -322,28 +329,51 @@ form .readonly {
 
 /* START SUCCESS NOTIFICATION */
 
-.modal-success {
+.modal-notification {
 	width: 25%;
 }
 
-.success-notification {
+.notification {
 	margin: auto;
 	text-align: center;
 	font-size: 18px;
 }
 
-.btn-confirmation {
-	background-color: #27ae60;
-	color: white;
-	border: 2px solid #27ae60;
+.btn-confirmation {	
+	background-color: white;
+	color: #2980b9;
+	border: 2px solid #2980b9;
 }
 
 .btn-confirmation:hover {
-	background-color: white;
-	color: #27ae60;
+	background-color: #2980b9;
+	color: white;
 }
 
-.success-notification-text {
+.btn-hapus {
+	background-color: #BA2929;
+	color: white;
+	margin: 0px 10px;
+	border: 2px solid #BA2929;
+}
+
+.btn-hapus:hover {
+	color: #BA2929;
+	background-color: white;
+}
+
+.btn-batal {
+	background-color: white;
+	color: #898989;
+	border: 2px solid #EBEBEB;
+	margin: 0px 10px;
+}
+
+.btn-batal:hover {
+	background-color: #EBEBEB;
+}
+
+.notification-text {
 	margin: 30px;
 }
 
@@ -352,7 +382,10 @@ form .readonly {
 	font-size: 60px;
 }
 
-
+.notification-icon-failed {
+	color: #e74c3c;
+	font-size: 60px;
+}
 /* END SUCCESS NOTIFICATION */
 
 
