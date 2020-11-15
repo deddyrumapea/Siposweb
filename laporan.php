@@ -23,7 +23,6 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi");
 			</ul>
 		</nav>
 	</header>
-
 	<main>
 		<div class="content-laporan">
 			<form action="" class="form-data-count">
@@ -42,33 +41,50 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi");
 					<th>ID Transaksi</th>
 					<th>Tanggal</th>
 					<th>Total</th>
-					<th>Keterangan</th>
+					<th>Pembayaran</th>
+					<th>Kembalian</th>
 					<th>Aksi</th>
 				</tr>
 
 				<?php $i = 1; ?>
 				<?php foreach ($transaksi as $row) : ?>
-				<tr>
-					<td><?= $i ?></td>
-					<td><?= $row["id"]; ?></td>
-					<td><?= $row["tanggal"]; ?></td>
-					<td>Rp<?=number_format($row["total"], 2, ",", "."); ?></td>
-					<td><?= $row["keterangan"]; ?></td>
-					<td><a href="#" class="action-edit"><i class="fas fa-edit"></i> Edit</a> <a href="#" class="action-hapus"><i class="fas fa-trash"></i> Hapus</a></td>
-				</tr>
-				<?php $i++; ?>
+					<tr>
+						<td><?= $i ?></td>
+						<td><?= $row["id"]; ?></td>
+						<td><?= $row["tanggal"]; ?></td>
+						<td>Rp<?=number_format($row["total"], 2, ",", "."); ?></td>
+						<td><?= $row["bayar"]; ?></td>
+						<td><?= $row["kembalian"]; ?></td>
+						<td>
+							<a href="transaksi.php?id=<?= $row["id"]; ?>" class="action-edit"><i class="fas fa-edit"></i> Edit</a> 
+							<a id="btn-hapus-produk" href="#" class="action-hapus" onclick="hapusTransaksi('<?= $row["id"];?>')"><i class="fas fa-trash"></i> Hapus</a>
+						</td>
+					</tr>
+					<?php $i++; ?>
 				<?php endforeach; ?>
 
 			</table>
 			<button class="btn btn-page-nav"><i class="fas fa-angle-left"></i> Sebelumnya</button>
 			<button class="btn btn-page-nav">Selanjutnya <i class="fas fa-angle-right"></i></button>
 		</div>
+
+		<div id="modal-delete" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content modal-notification">
+				<div class="notification">
+					<i class="fas fa-exclamation-triangle notification-icon" style="color: #BA2929"></i>
+					<p class="notification-text">Hapus transaksi dari daftar?</p>
+					<button class="btn btn-batal" id="btn-confirmation">Batal</button>
+					<a id="btn-confirm-hapus"><button class="btn btn-hapus">Hapus</button></a>
+				</div>
+			</div>
+		</div>
 	</main>
 
 	<footer>
 		<p>&copy 2020 Deddy Romnan Rumapea</p>
 	</footer>
-	<script type="text/javascript" src="assets/js/produk.js"></script>
+	<script type="text/javascript" src="assets/js/laporan.js"></script>
 	<script src="https://kit.fontawesome.com/6606a30803.js" crossorigin="anonymous"></script>
 </body>
 </html>

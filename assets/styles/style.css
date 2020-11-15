@@ -64,12 +64,12 @@ main {
 	margin: 85px 50px 30px;
 }
 
-form th {
+.tambah-produk table th, .ringkasan-transaksi table th {
 	text-align: right;
 	font-size: 14px;
 }
 
-form input {
+input {
 	padding: 10px;
 	width: 90%;
 	margin: 5px;
@@ -78,7 +78,7 @@ form input {
 	outline: none;
 }
 
-form .readonly {
+.readonly {
 	background-color: #F2F2F2;
 	color : #7f8c8d;
 }
@@ -111,7 +111,7 @@ form .readonly {
 }
 
 .btn-tambah-produk,
-.btn-edit-produk
+.btn-edit-produk,
 .btn-check-out {
 	float: right;
 }

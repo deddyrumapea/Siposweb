@@ -40,4 +40,11 @@ function hapusProduk($id) {
 	mysqli_query($conn, "DELETE FROM produk WHERE id = '$id'");
 	return mysqli_affected_rows($conn);
 }
+
+function hapusTransaksi($id) {
+	global $conn;
+	mysqli_query($conn, "DELETE FROM laporan_transaksi WHERE id = '$id'");
+	return mysqli_affected_rows($conn);
+}
+
 ?>
