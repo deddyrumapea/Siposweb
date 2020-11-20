@@ -34,6 +34,7 @@ if (isset($_GET["id"])) {
 <html>
 <head>
 	<title>Transaksi - SIPOSWEB</title>
+	<link rel="shortcut icon" type="image/ico" href="assets/images/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="assets/styles/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

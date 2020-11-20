@@ -36,6 +36,7 @@ $produk = queryRead("SELECT * FROM produk");
 <html>
 <head>
 	<title>Produk - SIPOSWEB</title>
+	<link rel="shortcut icon" type="image/ico" href="assets/images/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="assets/styles/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
 </head>
