@@ -44,5 +44,5 @@ function searchProduk() {
 function populateFormProduk(data) {
 	document.getElementById("nama-produk").value = data.nama;
 	document.getElementById("harga").value = data.harga;
-	document.getElementById("stock").value = data.stock;
+	document.getElementById("stock").value = "Stock : " + data.stock;
 }

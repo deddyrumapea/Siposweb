@@ -425,6 +425,7 @@ input {
 	cursor: pointer;
 	padding: 10px;
 	width: 40%;
+	margin-left: 5px;
 	display: inline-block;
 	background-color: #0366d6;
 	color: white;
