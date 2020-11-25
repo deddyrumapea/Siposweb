@@ -87,12 +87,10 @@ if (isset($_GET["id"])) {
 					</tr>
 					<tr>
 						<th>
-							<label for="quantitiy">Quantity : </label>
+							<label for="quantity">Quantity : </label>
 						</th>
 						<td>
-							<input type="number" onkeyup="hitungSubTotal()" min="1" id="quantitiy" name="quantitiy" style="width: 41%" <?php if (isset($produk_id)): ?>
-							required
-							<?php endif ?>>
+							<input type="number" onchange="hitungSubTotal()" onkeyup="hitungSubTotal()" min="1" id="quantity" name="quantity" style="width: 41%" <?php if (isset($produk_id)): ?> required <?php endif ?>>
 							<input type="text" id="stock" class="readonly" style="width: 40%" value="<?= $produk_stock; ?>" readonly>
 						</td>
 					</tr>
