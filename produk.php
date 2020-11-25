@@ -1,5 +1,5 @@
 <?php
-require 'functions.php';
+require 'functions/functions.php';
 
 // Cek apakah tombol submit sudah ditekan
 if (isset($_POST["tambah_produk_btn"])) {

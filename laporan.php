@@ -1,5 +1,5 @@
 <?php 
-require 'functions.php';
+require 'functions/functions.php';
 $transaksi = queryRead("SELECT * FROM laporan_transaksi");
 ?>
 

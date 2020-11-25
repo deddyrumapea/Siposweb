@@ -1,6 +1,6 @@
 <?php 
 
-require 'functions.php';
+require 'functions/functions.php';
 
 if (isset($_POST["login"])) {
 	$username = $_POST["username"];
