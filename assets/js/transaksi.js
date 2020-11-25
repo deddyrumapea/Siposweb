@@ -10,25 +10,10 @@ btnConfirmation.onclick = function() {
 	modalSuccess.style.display = "none";
 }
 
-
-// AJAX
-// $(document).ready(function(){
-// 	$("#btn-search").click(function(){
-// 		$.ajax({
-// 			url: 'search_produk.php',
-// 			type: 'post',
-// 			data: {search: $("#id-produk").val()}
-// 			success: function(result){
-// 				$("#result").html(result);
-// 			}
-// 		})
-// 	})
-// });
-
 function searchProduk() {
 	$.ajax({
 		type: "POST",
-		url: 'search_produk.php',
+		url: 'functions/search_produk.php',
 		data:{query: $("#id-produk").val()},
 		success: function(result) {
 			try {
