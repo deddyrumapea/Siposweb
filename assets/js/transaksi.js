@@ -1,8 +1,10 @@
 var modalSuccess = document.getElementById("modal-transaction-added");
 
+var btnTambahkanProduk = document.getElementById("tambah-produk-dibeli");
 var btnCheckOut = document.getElementById("btn-check-out");
 var btnConfirmation = document.getElementById("btn-confirmation");
 
+var formIdProduk = document.getElementById("id-produk");
 var formNamaProduk = document.getElementById("nama-produk");
 var formHargaProduk = document.getElementById("harga");
 var formQuantity = document.getElementById("quantity");
@@ -12,13 +14,8 @@ var formTotal = document.getElementById("total");
 var formBayar = document.getElementById("bayar");
 var formKembalian = document.getElementById("kembalian");
 
-btnCheckOut.onclick = function() {
-	modalSuccess.style.display = "block";
-}
+var tableDibeli = document.getElementById("table-dibeli");
 
-btnConfirmation.onclick = function() {
-	modalSuccess.style.display = "none";
-}
 
 function searchProduk() {
 	$.ajax({
@@ -37,12 +34,56 @@ function searchProduk() {
 }
 
 function populateFormProduk(data) {
-	document.getElementById("nama-produk").value = data.nama;
-	document.getElementById("harga").value = data.harga;
-	document.getElementById("stock").value = "Stock : " + data.stock;
+	formNamaProduk.value = data.nama;
+	formHargaProduk.value = data.harga.toLocaleString();
+	formStockProduk.value = "Stock : " + data.stock;
 }
 
 function hitungSubTotal(){
-	var subTotal = (document.getElementById("quantity").value * document.getElementById("harga").value).toLocaleString();
-	document.getElementById("subtotal").value = (subTotal);
+	const quantity = formQuantity.value;
+	const harga = formHargaProduk.value;
+	var subTotal = (quantity * harga).toLocaleString();
+	formSubTotal.value = (subTotal);
+}
+
+btnTambahkanProduk.onclick = function() {
+	const nomor = tableDibeli.rows.length;
+	const id = formIdProduk.value;
+	const nama = formNamaProduk.value;
+	const harga = formHargaProduk.value;
+	const quantity = formQuantity.value;
+	const subtotal = formSubTotal.value;
+	const aksi = "<a href='#!' onclick='this.parentElement.parentElement.remove();' class='action-hapus'><i class='fas fa-trash'></i> Hapus</a>";
+
+	if (quantity != "" && id != "") {
+		resetFormProduk();
+
+		var row = tableDibeli.insertRow();
+		row.insertCell(0).innerHTML = nomor;
+		row.insertCell(1).innerHTML = id;
+		row.insertCell(2).innerHTML = nama;
+		row.insertCell(3).innerHTML = harga;
+		row.insertCell(4).innerHTML = quantity;
+		row.insertCell(5).innerHTML = subtotal;
+		row.insertCell(6).innerHTML = aksi;
+
+		row.id = `PROD${id}`;
+	}
+}
+
+btnCheckOut.onclick = function() {
+	modalSuccess.style.display = "block";
+}
+
+btnConfirmation.onclick = function() {
+	modalSuccess.style.display = "none";
+}
+
+function resetFormProduk(){
+	formIdProduk.value =
+	formNamaProduk.value = 
+	formHargaProduk.value = 
+	formQuantity.value = 
+	formStockProduk.value =  
+	formSubTotal.value = '';
 }

@@ -38,7 +38,6 @@ if (isset($_GET["id"])) {
 	<link rel="stylesheet" type="text/css" href="assets/styles/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/js/transaksi.js"></script>
 	<script src="https://kit.fontawesome.com/6606a30803.js" crossorigin="anonymous"></script>
 </head>
 
@@ -64,7 +63,7 @@ if (isset($_GET["id"])) {
 							<label for="id-produk">ID Produk : </label>
 						</th>
 						<td>
-							<input type="text" id="id-produk" name="id-produk-input" style="width: 80%;" value="<?= isset($produk_id) ? $produk_id : ""; ?>" required>
+							<input type="text" id="id-produk" style="width: 80%;" value="<?= isset($produk_id) ? $produk_id : ""; ?>" required>
 							<button onclick="searchProduk()" id="btn-search" class="btn btn-search"><i class="fas fa-search"></i></button>
 						</td>
 					</tr>
@@ -74,7 +73,7 @@ if (isset($_GET["id"])) {
 							<label for="nama-produk">Nama Produk : </label>
 						</th>
 						<td>
-							<input type="text" id="nama-produk" name="nama-produk" class="readonly" value="<?= $produk_nama; ?>" readonly required>
+							<input type="text" id="nama-produk" class="readonly" value="<?= $produk_nama; ?>" readonly required>
 						</td>
 					</tr>
 					<tr>
@@ -82,7 +81,7 @@ if (isset($_GET["id"])) {
 							<label for="harga">Harga (Rp) : </label>
 						</th>
 						<td>
-							<input type="text" id="harga" name="harga" class="readonly" value="<?= $produk_harga; ?>" readonly required>
+							<input type="text" id="harga" class="readonly" value="<?= $produk_harga; ?>" readonly required>
 						</td>
 					</tr>
 					<tr>
@@ -90,7 +89,7 @@ if (isset($_GET["id"])) {
 							<label for="quantity">Quantity : </label>
 						</th>
 						<td>
-							<input type="number" onchange="hitungSubTotal()" onkeyup="hitungSubTotal()" min="1" id="quantity" name="quantity" style="width: 41%" <?php if (isset($produk_id)): ?> required <?php endif ?>>
+							<input type="number" onchange="hitungSubTotal()" onkeyup="hitungSubTotal()" min="1" id="quantity" style="width: 41%" <?php if (isset($produk_id)): ?> required <?php endif ?>>
 							<input type="text" id="stock" class="readonly" style="width: 40%" value="<?= $produk_stock; ?>" readonly>
 						</td>
 					</tr>
@@ -99,11 +98,11 @@ if (isset($_GET["id"])) {
 							<label for="subtotal">Subtotal (Rp) : </label>
 						</th>
 						<td>
-							<input type="text" id="subtotal" name="subtotal" class="readonly" required readonly>
+							<input type="text" id="subtotal" class="readonly" required readonly>
 						</td>
 					</tr>
 				</table>
-				<button type="submit" name="tambah-produk-dibeli" class="btn btn-tambah-produk">
+				<button type="submit" id="tambah-produk-dibeli" class="btn btn-tambah-produk">
 					<i class="fas fa-plus-circle"></i> Tambahkan
 				</button>
 			</div>
@@ -157,7 +156,7 @@ if (isset($_GET["id"])) {
 				<button type="submit" class="btn btn-check-out" id="btn-check-out"><i class="fas fa-cash-register"></i> Check Out</button>
 			</div>
 		</div>
-		<table class="dibeli">
+		<table id="table-dibeli" class="dibeli">
 			<tr>
 				<th>No</th>
 				<th>ID Produk</th>
@@ -166,15 +165,6 @@ if (isset($_GET["id"])) {
 				<th>Quantity</th>
 				<th>Subtotal</th>
 				<th>Aksi</th>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>P723</td>
-				<td>Terasi Udang Mamasuka 120g</td>
-				<td>Rp1,200.00</td>
-				<td>2</td>
-				<td>Rp2,400.00</td>
-				<td><a href="#" class="action-hapus"><i class="fas fa-trash"></i> Hapus</a></td>
 			</tr>
 		</table>
 
@@ -193,5 +183,7 @@ if (isset($_GET["id"])) {
 	<footer>
 		<p>&copy 2020 Deddy Romnan Rumapea</p>
 	</footer>
+
+	<script type="text/javascript" src="assets/js/transaksi.js"></script>
 </body>
 </html>
