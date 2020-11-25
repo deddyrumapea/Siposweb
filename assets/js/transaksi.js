@@ -35,7 +35,7 @@ function searchProduk() {
 
 function populateFormProduk(data) {
 	formNamaProduk.value = data.nama;
-	formHargaProduk.value = data.harga.toLocaleString();
+	formHargaProduk.value = data.harga;
 	formStockProduk.value = "Stock : " + data.stock;
 }
 
@@ -47,7 +47,6 @@ function hitungSubTotal(){
 }
 
 btnTambahkanProduk.onclick = function() {
-	const nomor = tableDibeli.rows.length;
 	const id = formIdProduk.value;
 	const nama = formNamaProduk.value;
 	const harga = formHargaProduk.value;
@@ -59,13 +58,12 @@ btnTambahkanProduk.onclick = function() {
 		resetFormProduk();
 
 		var row = tableDibeli.insertRow();
-		row.insertCell(0).innerHTML = nomor;
-		row.insertCell(1).innerHTML = id;
-		row.insertCell(2).innerHTML = nama;
-		row.insertCell(3).innerHTML = harga;
-		row.insertCell(4).innerHTML = quantity;
-		row.insertCell(5).innerHTML = subtotal;
-		row.insertCell(6).innerHTML = aksi;
+		row.insertCell(0).innerHTML = id;
+		row.insertCell(1).innerHTML = nama;
+		row.insertCell(2).innerHTML = parseInt(harga).toLocaleString();
+		row.insertCell(3).innerHTML = quantity;
+		row.insertCell(4).innerHTML = subtotal;
+		row.insertCell(5).innerHTML = aksi;
 
 		row.id = `PROD${id}`;
 	}

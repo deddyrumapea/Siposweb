@@ -158,7 +158,6 @@ if (isset($_GET["id"])) {
 		</div>
 		<table id="table-dibeli" class="dibeli">
 			<tr>
-				<th>No</th>
 				<th>ID Produk</th>
 				<th>Nama Produk</th>
 				<th>Harga</th>
