@@ -43,7 +43,7 @@ var btnConfirmDelete = document.getElementById("btn-confirm-hapus");
 
 function hapusProduk(id) {
 	modalDelete.style.display = "block";
-	btnConfirmDelete.href = "hapus_produk.php?id=" + id;
+	btnConfirmDelete.href = "functions/hapus_produk.php?id=" + id;
 }
 
 // MODAL DELETE END

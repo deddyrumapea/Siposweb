@@ -228,7 +228,7 @@ $produk = queryRead("SELECT * FROM produk");
 					<i class="fas fa-exclamation-triangle notification-icon" style="color: #BA2929"></i>
 					<p class="notification-text">Hapus produk dari daftar?</p>
 					<button class="btn btn-batal" id="btn-confirmation">Batal</button>
-					<a id="btn-confirm-hapus"><button class="btn btn-hapus">Hapus</button></a>
+					<a href="#!" id="btn-confirm-hapus"><button class="btn btn-hapus">Hapus</button></a>
 				</div>
 			</div>
 		</div>
