@@ -78,7 +78,7 @@ if (isset($_GET["id"])) {
 					</tr>
 					<tr>
 						<th>
-							<label for="harga">Harga (Rp) : </label>
+							<label for="harga">Harga : </label>
 						</th>
 						<td>
 							<input type="text" id="harga" class="readonly" value="<?= $produk_harga; ?>" readonly required>
@@ -95,7 +95,7 @@ if (isset($_GET["id"])) {
 					</tr>
 					<tr>
 						<th>
-							<label for="subtotal">Subtotal (Rp) : </label>
+							<label for="subtotal">Subtotal : </label>
 						</th>
 						<td>
 							<input type="text" id="subtotal" class="readonly" required readonly>
@@ -129,7 +129,7 @@ if (isset($_GET["id"])) {
 						</tr>
 						<tr>
 							<th>
-								<label for="total">Total (Rp) : </label>
+								<label for="total">Total : </label>
 							</th>
 							<td>
 								<input type="text" id="total" class="readonly" value="<?= $transaksi_total; ?>" readonly>
@@ -137,15 +137,15 @@ if (isset($_GET["id"])) {
 						</tr>
 						<tr>
 							<th>
-								<label for="bayar">Bayar (Rp) : </label>
+								<label for="bayar">Bayar : </label>
 							</th>
 							<td>
-								<input type="number" id="bayar" value="<?= $transaksi_bayar; ?>">
+								<input onchange="hitungKembalian()" onkeyup="hitungKembalian()" type="number" id="bayar" value="<?= $transaksi_bayar; ?> required">
 							</td>
 						</tr>
 						<tr>
 							<th>
-								<label for="kembalian">Kembalian (Rp) : </label>
+								<label for="kembalian">Kembalian : </label>
 							</th>
 							<td>
 								<input type="text" id="kembalian" class="readonly" value="<?= $transaksi_kembalian; ?>" readonly>

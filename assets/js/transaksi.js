@@ -16,6 +16,10 @@ var formKembalian = document.getElementById("kembalian");
 
 var tableDibeli = document.getElementById("table-dibeli");
 
+var hargaProduk = 0;
+var subtotalProduk = 0;
+var totalTransaksi = 0;
+var kembalianTransaksi = 0;
 
 function searchProduk() {
 	$.ajax({
@@ -35,23 +39,37 @@ function searchProduk() {
 
 function populateFormProduk(data) {
 	formNamaProduk.value = data.nama;
-	formHargaProduk.value = data.harga;
-	formStockProduk.value = "Stock : " + data.stock;
+	hargaProduk = parseInt(data.harga);
+	formHargaProduk.value =  `Rp${hargaProduk.toLocaleString()}`;
+	formStockProduk.value = `Stock : ${data.stock}`;
+	formQuantity.max = data.stock;
 }
 
-function hitungSubTotal(){
+function hitungSubTotal() {
 	const quantity = formQuantity.value;
-	const harga = formHargaProduk.value;
-	var subTotal = (quantity * harga).toLocaleString();
-	formSubTotal.value = (subTotal);
+	subtotalProduk = quantity * hargaProduk;
+	formSubTotal.value = `Rp${subtotalProduk.toLocaleString()}`;
+}
+
+function hitungKembalian() {
+	const bayar = formBayar.value;
+	kembalianTransaksi = bayar - totalTransaksi;
+	formKembalian.value = `Rp${kembalianTransaksi.toLocaleString()}`;
+}
+
+function hitungTotalTransaksi() {
+	totalTransaksi += subtotalProduk;
+	formTotal.value = `Rp${totalTransaksi.toLocaleString()}`;
+	formKembalian.value = formBayar.value = '';
+	formBayar.min = totalTransaksi;
 }
 
 btnTambahkanProduk.onclick = function() {
 	const id = formIdProduk.value;
 	const nama = formNamaProduk.value;
-	const harga = formHargaProduk.value;
+	const harga = hargaProduk;
 	const quantity = formQuantity.value;
-	const subtotal = formSubTotal.value;
+	const subtotal = subtotalProduk;
 	const aksi = "<a href='#!' onclick='this.parentElement.parentElement.remove();' class='action-hapus'><i class='fas fa-trash'></i> Hapus</a>";
 
 	if (quantity != "" && id != "") {
@@ -60,13 +78,15 @@ btnTambahkanProduk.onclick = function() {
 		var row = tableDibeli.insertRow();
 		row.insertCell(0).innerHTML = id;
 		row.insertCell(1).innerHTML = nama;
-		row.insertCell(2).innerHTML = parseInt(harga).toLocaleString();
+		row.insertCell(2).innerHTML = `Rp${harga.toLocaleString()}`;
 		row.insertCell(3).innerHTML = quantity;
-		row.insertCell(4).innerHTML = subtotal;
+		row.insertCell(4).innerHTML = `Rp${subtotal.toLocaleString()}`;
 		row.insertCell(5).innerHTML = aksi;
 
 		row.id = `PROD${id}`;
 	}
+
+	hitungTotalTransaksi();
 }
 
 btnCheckOut.onclick = function() {
