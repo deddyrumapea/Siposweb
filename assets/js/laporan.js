@@ -4,5 +4,5 @@ var btnConfirmDelete = document.getElementById("btn-confirm-hapus");
 
 function hapusTransaksi(id) {
 	modalDelete.style.display = "block";
-	btnConfirmDelete.href = "hapus_transaksi.php?id=" + id;
+	btnConfirmDelete.href = "functions/hapus_transaksi.php?id=" + id;
 }

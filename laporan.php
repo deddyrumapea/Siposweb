@@ -54,8 +54,8 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi");
 						<td><?= $row["id"]; ?></td>
 						<td><?= $row["tanggal"]; ?></td>
 						<td>Rp<?=number_format($row["total"], 2, ",", "."); ?></td>
-						<td><?= $row["bayar"]; ?></td>
-						<td><?= $row["kembalian"]; ?></td>
+						<td>Rp<?=number_format($row["bayar"], 2, ",", "."); ?></td>
+						<td>Rp<?=number_format($row["kembalian"], 2, ",", "."); ?></td>
 						<td>
 							<a href="transaksi.php?id=<?= $row["id"]; ?>" class="action-edit"><i class="fas fa-edit"></i> Edit</a> 
 							<a id="btn-hapus-produk" href="#" class="action-hapus" onclick="hapusTransaksi('<?= $row["id"];?>')"><i class="fas fa-trash"></i> Hapus</a>

@@ -1,6 +1,20 @@
 <?php 
 require 'functions/functions.php';
 
+// Cek apakah tombol checkout ditekan
+if (isset($_POST["btn-check-out"])) {
+	// Ambil data transaksi
+	$id = $_POST["id-transaksi"];
+	$tanggal = $_POST["tanggal"];
+	$total = $_POST["total"];
+	$bayar = $_POST["bayar"];
+	$kembalian = $_POST["kembalian"];
+
+	// Query insert data transaksi
+	$query = "INSERT INTO laporan_transaksi VALUES ('$id', '$tanggal', '$total', '$bayar', '$kembalian')";
+	$isSuccessfullyAdded = queryCreate($query);
+}
+
 // INIT TRANSAKSI VARIABLES
 $transaksi = "";
 $transaksi_id = "";
@@ -78,7 +92,7 @@ if (isset($_GET["id"])) {
 					</tr>
 					<tr>
 						<th>
-							<label for="harga">Harga : </label>
+							<label for="harga">Harga (Rp) : </label>
 						</th>
 						<td>
 							<input type="text" id="harga" class="readonly" value="<?= $produk_harga; ?>" readonly required>
@@ -95,7 +109,7 @@ if (isset($_GET["id"])) {
 					</tr>
 					<tr>
 						<th>
-							<label for="subtotal">Subtotal : </label>
+							<label for="subtotal">Subtotal (Rp) : </label>
 						</th>
 						<td>
 							<input type="text" id="subtotal" class="readonly" required readonly>
@@ -108,14 +122,14 @@ if (isset($_GET["id"])) {
 			</div>
 
 			<div class="ringkasan-transaksi">
-				<form action="#">
+				<form action="" method="post">
 					<table>
 						<tr>
 							<th>
 								<label for="id-transaksi">ID Transaksi : </label>
 							</th>
 							<th>
-								<input type="text" id="id-transaksi" class="readonly" value="<?= $transaksi_id; ?>" readonly>
+								<input type="text" id="id-transaksi" name="id-transaksi" class="readonly" value="<?= $transaksi_id; ?>" readonly>
 							</th>
 						</tr>
 
@@ -124,36 +138,37 @@ if (isset($_GET["id"])) {
 								<label for="tanggal">Tanggal : </label>
 							</th>
 							<th>
-								<input type="text" id="tanggal" class="readonly" value="<?= $transaksi_tanggal; ?>" readonly>
+								<input type="text" id="tanggal" name="tanggal" class="readonly" value="<?= $transaksi_tanggal; ?>" readonly>
 							</th>
 						</tr>
 						<tr>
 							<th>
-								<label for="total">Total : </label>
+								<label for="total">Total (Rp) : </label>
 							</th>
 							<td>
-								<input type="text" id="total" class="readonly" value="<?= $transaksi_total; ?>" readonly>
+								<input type="text" id="total" name="total" class="readonly" value="<?= $transaksi_total; ?>" readonly>
 							</td>
 						</tr>
 						<tr>
 							<th>
-								<label for="bayar">Bayar : </label>
+								<label for="bayar">Bayar (Rp) : </label>
 							</th>
 							<td>
-								<input onchange="hitungKembalian()" onkeyup="hitungKembalian()" type="number" id="bayar" value="<?= $transaksi_bayar; ?> required">
+								<input onchange="hitungKembalian()" onkeyup="hitungKembalian()" type="number" id="bayar" name="bayar" value="<?= $transaksi_bayar; ?>" required>
 							</td>
 						</tr>
 						<tr>
 							<th>
-								<label for="kembalian">Kembalian : </label>
+								<label for="kembalian">Kembalian (Rp) : </label>
 							</th>
 							<td>
-								<input type="text" id="kembalian" class="readonly" value="<?= $transaksi_kembalian; ?>" readonly>
+								<input type="text" id="kembalian" name="kembalian" class="readonly" value="<?= $transaksi_kembalian; ?>" readonly>
 							</td>
 						</tr>
 					</table>
+					
+					<button type="submit" class="btn btn-check-out" id="btn-check-out" name="btn-check-out"><i class="fas fa-cash-register"></i> Check Out</button>
 				</form>
-				<button type="submit" class="btn btn-check-out" id="btn-check-out"><i class="fas fa-cash-register"></i> Check Out</button>
 			</div>
 		</div>
 		<table id="table-dibeli" class="dibeli">
@@ -167,12 +182,12 @@ if (isset($_GET["id"])) {
 			</tr>
 		</table>
 
-		<div id="modal-transaction-added" class="modal">
+		<div id="modal-transaction-added" class="modal" <?php if ($isSuccessfullyAdded) : ?> style="display: block;" <?php endif ?>>
 			<!-- Modal content -->
-			<div class="modal-content modal-success">
-				<div class="success-notification">
+			<div class="modal-content modal-notification">
+				<div class="notification">
 					<i class="fas fa-check-circle notification-icon"></i>
-					<p class="success-notification-text">Transaksi berhasil ditambahkan!</p>
+					<p class="notification-text">Transaksi berhasil ditambahkan!</p>
 					<button class="btn btn-confirmation" id="btn-confirmation">Selesai</button>
 				</div>
 			</div>

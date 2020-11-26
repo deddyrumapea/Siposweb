@@ -4,5 +4,5 @@ require 'functions.php';
 $id = $_GET["id"];
 
 hapusTransaksi($id);
-echo "<script>document.location.href = 'laporan.php';</script>";
+echo "<script>document.location.href = '/Siposweb/laporan.php';</script>";
 ?>

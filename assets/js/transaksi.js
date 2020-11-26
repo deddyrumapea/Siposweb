@@ -18,8 +18,8 @@ var tableDibeli = document.getElementById("table-dibeli");
 
 var hargaProduk = 0;
 var subtotalProduk = 0;
-var totalTransaksi = 0;
-var kembalianTransaksi = 0;
+var totalTransaksi = formTotal.value;
+var kembalianTransaksi = formKembalian.value;
 
 function searchProduk() {
 	$.ajax({
@@ -40,7 +40,7 @@ function searchProduk() {
 function populateFormProduk(data) {
 	formNamaProduk.value = data.nama;
 	hargaProduk = parseInt(data.harga);
-	formHargaProduk.value =  `Rp${hargaProduk.toLocaleString()}`;
+	formHargaProduk.value =  hargaProduk;
 	formStockProduk.value = `Stock : ${data.stock}`;
 	formQuantity.max = data.stock;
 }
@@ -48,18 +48,18 @@ function populateFormProduk(data) {
 function hitungSubTotal() {
 	const quantity = formQuantity.value;
 	subtotalProduk = quantity * hargaProduk;
-	formSubTotal.value = `Rp${subtotalProduk.toLocaleString()}`;
+	formSubTotal.value = subtotalProduk;
 }
 
 function hitungKembalian() {
 	const bayar = formBayar.value;
 	kembalianTransaksi = bayar - totalTransaksi;
-	formKembalian.value = `Rp${kembalianTransaksi.toLocaleString()}`;
+	formKembalian.value = kembalianTransaksi;
 }
 
 function hitungTotalTransaksi() {
 	totalTransaksi += subtotalProduk;
-	formTotal.value = `Rp${totalTransaksi.toLocaleString()}`;
+	formTotal.value = totalTransaksi;
 	formKembalian.value = formBayar.value = '';
 	formBayar.min = totalTransaksi;
 }
@@ -89,10 +89,6 @@ btnTambahkanProduk.onclick = function() {
 	hitungTotalTransaksi();
 }
 
-btnCheckOut.onclick = function() {
-	modalSuccess.style.display = "block";
-}
-
 btnConfirmation.onclick = function() {
 	modalSuccess.style.display = "none";
 }
@@ -104,4 +100,9 @@ function resetFormProduk(){
 	formQuantity.value = 
 	formStockProduk.value =  
 	formSubTotal.value = '';
+}
+
+btnCheckOut.onclick = function() {
+	formTotal.value = totalTransaksi;
+	formKembalian.value = kembalianTransaksi;
 }
