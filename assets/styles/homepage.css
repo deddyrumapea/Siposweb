@@ -1,0 +1,55 @@
+body{
+	background:url(/Siposweb/assets/images/homepage.jpg)no-repeat;
+	background-size: cover;
+	font-family: calibri;
+	/*background: linear-gradient(to bottom right, #568ae3, white);*/
+	/*background-size: 200% 200%;*/
+}
+
+.head {
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	height: 100px;
+	position: fixed;
+}
+
+.head .login {
+	margin-top: 350px;
+	margin-left: 70px;
+	color: darkorange;
+
+}.head .login a {
+	background: #30f909;
+	text-decoration: none;
+	padding: 10px;
+	padding-left: 50px;
+	padding-right:50px;
+	color: white;
+	border-radius: 50px;
+}
+.head .login a:hover {
+	color: darkorange;
+	background: red;
+}
+.head img{
+	width: 20%;
+	margin-top: 50px;
+	margin-left: 70px;
+	background: white;
+	border-radius: 50px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.isi{
+	width: 55%;
+	margin-top: 250px;
+	margin-left: 65px;
+	color: white;
+	font-size: 150%;
+	
+}
+.isi p{
+	font-size: 140%;
+}
