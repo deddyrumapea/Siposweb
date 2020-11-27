@@ -235,7 +235,7 @@ $produk = queryRead("SELECT * FROM produk");
 	</main>
 
 	<footer>
-		<p>&copy 2020 Deddy Romnan Rumapea</p>
+		<p>&copy 2020 Tim Siposweb</p>
 	</footer>
 
 	<script type="text/javascript" src="assets/js/produk.js"></script>

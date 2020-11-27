@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2020 at 07:35 PM
+-- Generation Time: Nov 27, 2020 at 03:48 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -35,6 +35,18 @@ CREATE TABLE `laporan_transaksi` (
   `kembalian` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `laporan_transaksi`
+--
+
+INSERT INTO `laporan_transaksi` (`id`, `tanggal`, `total`, `bayar`, `kembalian`) VALUES
+('TRX-2CAE1C', '2020-11-26 08:52:45', 49000, 90000, 41000),
+('TRX-837C43', '2020-11-26 08:20:04', 196000, 200000, 4000),
+('TRX-8990B2', '2020-11-26 13:45:33', 49000, 49000, 0),
+('TRX-B93012', '2020-11-26 08:54:00', 196000, 196037, 37),
+('TRX-C16971', '2020-11-26 08:18:26', 98000, 100000, 2000),
+('TRX-D8A9AD', '2020-11-27 08:22:44', 0, 3, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -53,7 +65,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `nama`, `harga`, `stock`) VALUES
-('PRD-219D1E', 'Monde Butter Cookie', 59000, 21),
+('PRD-219D1E', 'Monde Butter Cookies', 49000, 21),
 ('PRD-24F270', 'Vixal Pembersih Toilet 350ml', 12000, 25),
 ('PRD-355EAB', 'Malkist Crackers 90g', 5200, 52),
 ('PRD-3A2ED9', 'ABC Kecap Manis', 3000, 87),

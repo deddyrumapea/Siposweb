@@ -83,7 +83,7 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi");
 	</main>
 
 	<footer>
-		<p>&copy 2020 Deddy Romnan Rumapea</p>
+		<p>&copy 2020 Tim Siposweb</p>
 	</footer>
 	<script type="text/javascript" src="assets/js/laporan.js"></script>
 	<script src="https://kit.fontawesome.com/6606a30803.js" crossorigin="anonymous"></script>

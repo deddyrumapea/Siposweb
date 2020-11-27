@@ -10,6 +10,8 @@ var formHargaProduk = document.getElementById("harga");
 var formQuantity = document.getElementById("quantity");
 var formStockProduk = document.getElementById("stock");
 var formSubTotal = document.getElementById("subtotal");
+
+var formIdTransaksi = document.getElementById("id-transaksi");
 var formTotal = document.getElementById("total");
 var formBayar = document.getElementById("bayar");
 var formKembalian = document.getElementById("kembalian");
@@ -18,8 +20,11 @@ var tableDibeli = document.getElementById("table-dibeli");
 
 var hargaProduk = 0;
 var subtotalProduk = 0;
-var totalTransaksi = formTotal.value;
+var totalTransaksi = parseInt(formTotal.value);
 var kembalianTransaksi = formKembalian.value;
+
+var produkTransaksiArray = new Array();
+var idTransaksi = formIdTransaksi.value;
 
 function searchProduk() {
 	$.ajax({
@@ -36,6 +41,14 @@ function searchProduk() {
 		}
 	});
 }
+
+// function checkOut() {
+// 	$.ajax({
+// 		type: "POST",
+// 		url: 'functions/check_out_transaksi.php'
+// 		data: {transaksi : }
+// 	});
+// }
 
 function populateFormProduk(data) {
 	formNamaProduk.value = data.nama;
@@ -58,32 +71,33 @@ function hitungKembalian() {
 }
 
 function hitungTotalTransaksi() {
-	totalTransaksi += subtotalProduk;
+	totalTransaksi += parseInt(subtotalProduk);
 	formTotal.value = totalTransaksi;
 	formKembalian.value = formBayar.value = '';
 	formBayar.min = totalTransaksi;
 }
 
 btnTambahkanProduk.onclick = function() {
-	const id = formIdProduk.value;
+	const idProduk = formIdProduk.value;
 	const nama = formNamaProduk.value;
 	const harga = hargaProduk;
 	const quantity = formQuantity.value;
 	const subtotal = subtotalProduk;
 	const aksi = "<a href='#!' onclick='this.parentElement.parentElement.remove();' class='action-hapus'><i class='fas fa-trash'></i> Hapus</a>";
 
-	if (quantity != "" && id != "") {
+	const produkTransaksi = [`'${idTransaksi}'`, `'${idProduk}'`, quantity];
+	produkTransaksiArray.push(produkTransaksi);
+
+	if (quantity != "" && idProduk != "") {
 		resetFormProduk();
 
 		var row = tableDibeli.insertRow();
-		row.insertCell(0).innerHTML = id;
+		row.insertCell(0).innerHTML = idProduk;
 		row.insertCell(1).innerHTML = nama;
 		row.insertCell(2).innerHTML = `Rp${harga.toLocaleString()}`;
 		row.insertCell(3).innerHTML = quantity;
 		row.insertCell(4).innerHTML = `Rp${subtotal.toLocaleString()}`;
 		row.insertCell(5).innerHTML = aksi;
-
-		row.id = `PROD${id}`;
 	}
 
 	hitungTotalTransaksi();
