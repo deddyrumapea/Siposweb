@@ -1,17 +1,30 @@
-<?php 
+<?php
 
-// Cek apakah tombol checkout ditekan
-if (isset($_POST["btn-check-out"])) {
-	// Ambil data transaksi
-	$id = $_POST["id-transaksi"];
-	$tanggal = $_POST["tanggal"];
-	$total = $_POST["total"];
-	$bayar = $_POST["bayar"];
-	$kembalian = $_POST["kembalian"];
+require 'functions.php';
 
-	// Query insert data transaksi
-	$query = "INSERT INTO laporan_transaksi VALUES ('$id', '$tanggal', '$total', '$bayar', '$kembalian')";
-	$isSuccessfullyAdded = queryCreate($query);
+if (isset($_POST["transaksi"])) {
+	$transaksi = json_decode($_POST["transaksi"]);
+	
+	$idTransaksi = $transaksi->{"id_transaksi"};
+	$tanggal = $transaksi->{"tanggal"};
+	$total = $transaksi->{"total"};
+	$bayar = $transaksi->{"bayar"};
+	$kembalian = $transaksi->{"kembalian"};
+	$produk = $transaksi->{"produk"};
+
+	// Query insert data ke tabel laporan transaksi
+	$queryTransaksi = "INSERT INTO laporan_transaksi VALUES ('$idTransaksi', '$tanggal', $total, $bayar, $kembalian);";
+
+	// Query insert ke tabel produk transaksi
+	$queryProduk = "INSERT INTO produk_transaksi VALUES ";
+	$produkValues = array();
+	for ($i = 0; $i < count($produk); $i++) { 
+		$produkValues[] = "('".$idTransaksi."', '".$produk[$i]->{"id_produk"}."', ".$produk[$i]->{"quantity"}.")";
+	}
+	$queryProduk .= implode(',', $produkValues);
+
+	$result = queryCreate($queryTransaksi) and queryCreate($queryProduk);
+	echo $result;
 }
 
 ?>
