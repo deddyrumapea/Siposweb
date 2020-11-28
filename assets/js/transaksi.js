@@ -12,6 +12,7 @@ var formStockProduk = document.getElementById("stock");
 var formSubTotal = document.getElementById("subtotal");
 
 var formIdTransaksi = document.getElementById("id-transaksi");
+var formTanggal = document.getElementById("tanggal");
 var formTotal = document.getElementById("total");
 var formBayar = document.getElementById("bayar");
 var formKembalian = document.getElementById("kembalian");
@@ -20,10 +21,9 @@ var tableDibeli = document.getElementById("table-dibeli");
 
 var hargaProduk = 0;
 var subtotalProduk = 0;
-var totalTransaksi = parseInt(formTotal.value);
+var totalTransaksi = 0;
 var kembalianTransaksi = formKembalian.value;
 
-var produkTransaksiArray = new Array();
 var idTransaksi = formIdTransaksi.value;
 
 function searchProduk() {
@@ -41,14 +41,6 @@ function searchProduk() {
 		}
 	});
 }
-
-// function checkOut() {
-// 	$.ajax({
-// 		type: "POST",
-// 		url: 'functions/check_out_transaksi.php'
-// 		data: {transaksi : }
-// 	});
-// }
 
 function populateFormProduk(data) {
 	formNamaProduk.value = data.nama;
@@ -85,13 +77,11 @@ btnTambahkanProduk.onclick = function() {
 	const subtotal = subtotalProduk;
 	const aksi = "<a href='#!' onclick='this.parentElement.parentElement.remove();' class='action-hapus'><i class='fas fa-trash'></i> Hapus</a>";
 
-	const produkTransaksi = [`'${idTransaksi}'`, `'${idProduk}'`, quantity];
-	produkTransaksiArray.push(produkTransaksi);
-
 	if (quantity != "" && idProduk != "") {
 		resetFormProduk();
 
 		var row = tableDibeli.insertRow();
+		row.className = "produk-dibeli";
 		row.insertCell(0).innerHTML = idProduk;
 		row.insertCell(1).innerHTML = nama;
 		row.insertCell(2).innerHTML = `Rp${harga.toLocaleString()}`;
@@ -101,10 +91,6 @@ btnTambahkanProduk.onclick = function() {
 	}
 
 	hitungTotalTransaksi();
-}
-
-btnConfirmation.onclick = function() {
-	modalSuccess.style.display = "none";
 }
 
 function resetFormProduk(){
@@ -117,6 +103,44 @@ function resetFormProduk(){
 }
 
 btnCheckOut.onclick = function() {
-	formTotal.value = totalTransaksi;
-	formKembalian.value = kembalianTransaksi;
+	checkOut();
+}
+
+function collectTransactionData() {
+	var transaksi = new Object();
+	transaksi.id_transaksi = formIdTransaksi.value;
+	transaksi.tanggal = formTanggal.value;
+	transaksi.total = parseInt(formTotal.value);
+	transaksi.bayar = parseInt(formBayar.value);
+	transaksi.kembalian = parseInt(formKembalian.value);
+
+	var produk = new Array();
+	var rows = document.getElementsByClassName("produk-dibeli");
+	for (var i = 0; i < rows.length; i++) {
+		var row = new Object();
+		row.id_produk = rows[i].children[0].innerText;
+		row.quantity = parseInt(rows[i].children[3].innerText);
+		produk.push(row);
+	}
+	transaksi.produk = produk;
+	return JSON.stringify(transaksi);
+}
+
+function checkOut() {
+	$.ajax({
+		type: "POST",
+		url: 'functions/check_out_transaksi.php',
+		data:{transaksi: collectTransactionData()},
+		success: function(result) {
+			if (result == 1) {
+				modalSuccess.style.display = "block";
+			} else {
+				alert('Gagal menambahkan transaksi');
+			}
+		}
+	});
+}
+
+btnConfirmation.onclick = function() {
+	location.reload();
 }
