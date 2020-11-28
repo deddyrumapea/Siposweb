@@ -117,7 +117,7 @@ $produk = queryRead("SELECT * FROM produk");
 							</tr>
 							<tr>
 								<th>
-									<label for="nama-produk">Nama Produk : </label>
+									<label for="nama-produk">Nama : </label>
 								</th>
 								<td>
 									<input type="text" id="nama-produk" name="nama-produk" required>
