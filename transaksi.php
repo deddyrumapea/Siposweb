@@ -1,6 +1,5 @@
 <?php 
 require 'functions/functions.php';
-require 'functions/check_out_transaksi.php';
 
 // INIT TRANSAKSI VARIABLES
 $transaksi = "";
@@ -109,7 +108,7 @@ if (isset($_GET["id"])) {
 			</div>
 
 			<div class="ringkasan-transaksi">
-				<form action="" method="post">
+				<form action="" method="">
 					<table>
 						<tr>
 							<th>
@@ -153,9 +152,8 @@ if (isset($_GET["id"])) {
 							</td>
 						</tr>
 					</table>
-					
-					<button type="submit" class="btn btn-check-out" id="btn-check-out" name="btn-check-out"><i class="fas fa-cash-register"></i> Check Out</button>
 				</form>
+				<button type="submit" class="btn btn-check-out" id="btn-check-out" name="btn-check-out"><i class="fas fa-cash-register"></i> Check Out</button>
 			</div>
 		</div>
 		<table id="table-dibeli" class="dibeli">
@@ -169,7 +167,7 @@ if (isset($_GET["id"])) {
 			</tr>
 		</table>
 
-		<div id="modal-transaction-added" class="modal" <?php if ($isSuccessfullyAdded) : ?> style="display: block;" <?php endif ?>>
+		<div id="modal-transaction-added" class="modal">
 			<!-- Modal content -->
 			<div class="modal-content modal-notification">
 				<div class="notification">
