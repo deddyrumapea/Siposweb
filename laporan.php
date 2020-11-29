@@ -1,6 +1,14 @@
 <?php 
 require 'functions/functions.php';
-$transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC");
+
+// Menampilkan list transaksi
+$jumlahDataPerHalaman = (isset($_GET["count"])) ? $_GET["count"] : 15;
+$jumlahData = (int) queryRead("SELECT COUNT(id) AS jumlah_data FROM laporan_transaksi")[0]["jumlah_data"];
+$jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
+$halamanAktif = (isset($_GET["page"])) ? $_GET["page"] : 1;
+$awalData = $jumlahDataPerHalaman * ($halamanAktif - 1);
+
+$transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC LIMIT $awalData, $jumlahDataPerHalaman");
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +34,8 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC");
 	</header>
 	<main>
 		<div class="content-laporan">
-			<form action="" class="form-data-count">
-				<input type="text" value="15" class="input-data-count" id="input-data-count">
+			<form action="" method="get" class="form-data-count">
+				<input type="text" value="<?= $jumlahDataPerHalaman; ?>" class="input-data-count" id="input-data-count" name="count">
 				<label for="input-data-count"> data per halaman</label>
 			</form>
 			<a href="transaksi.php">
@@ -47,26 +55,31 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC");
 					<th>Aksi</th>
 				</tr>
 
-				<?php $i = 1; ?>
+				<?php $i = ($halamanAktif == 1) ? 1 : ($halamanAktif - 1) * $jumlahDataPerHalaman + 1; ?>
 				<?php foreach ($transaksi as $row) : ?>
 					<tr>
 						<td><?= $i ?></td>
-						<td><?= $row["id"]; ?></td>
+						<td onclick="copyIdTransaksi(this)" style="cursor: pointer;"><i class="far fa-copy" style="color: lightgrey; margin-right: 5px;"></i><?= $row["id"]; ?></td>
 						<td><?= $row["tanggal"]; ?></td>
 						<td>Rp<?=number_format($row["total"], 2, ",", "."); ?></td>
 						<td>Rp<?=number_format($row["bayar"], 2, ",", "."); ?></td>
 						<td>Rp<?=number_format($row["kembalian"], 2, ",", "."); ?></td>
 						<td>
 							<a href="transaksi.php?id=<?= $row["id"]; ?>" class="action-edit"><i class="far fa-eye"></i> Lihat</a> 
-							<a id="btn-hapus-produk" href="#" class="action-hapus" onclick="hapusTransaksi('<?= $row["id"];?>')"><i class="fas fa-trash"></i> Hapus</a>
+							<a id="btn-hapus-transaksi" href="#" class="action-hapus" onclick="hapusTransaksi('<?= $row["id"];?>')"><i class="fas fa-trash"></i> Hapus</a>
 						</td>
 					</tr>
 					<?php $i++; ?>
 				<?php endforeach; ?>
 
 			</table>
-			<button class="btn btn-page-nav"><i class="fas fa-angle-left"></i> Sebelumnya</button>
-			<button class="btn btn-page-nav">Selanjutnya <i class="fas fa-angle-right"></i></button>
+			<a href="<?= ($halamanAktif > 1) ? "?count=$jumlahDataPerHalaman&page=".($halamanAktif - 1) : "#"; ?>" class="btn btn-page-nav"><i class="fas fa-angle-left"></i> Sebelumnya</a>
+			<?php for($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+				<a href="?count=<?= $jumlahDataPerHalaman; ?>&page=<?= $i; ?>" class="btn btn-page-nav <?php if($i == $halamanAktif): ?>number-active<?php endif; ?>">
+					<?= $i; ?>
+				</a>
+			<?php endfor; ?>
+			<a href="<?= ($halamanAktif < $jumlahHalaman) ? "?count=$jumlahDataPerHalaman&page=".($halamanAktif + 1) : "#"; ?>" class="btn btn-page-nav">Selanjutnya <i class="fas fa-angle-right"></i></a>
 		</div>
 
 		<div id="modal-delete" class="modal">
