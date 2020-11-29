@@ -1,34 +1,14 @@
 <?php 
 require 'functions/functions.php';
 
-// INIT TRANSAKSI VARIABLES
-$transaksi = "";
-$transaksi_id = "";
+// Create new transaksi tanggal
 $transaksi_tanggal = date("Y-m-d H:i:s", time());
-$transaksi_total = "";
-$transaksi_bayar = "";
-$transaksi_kembalian = "";
 
-// INIT PRODUK VARIABLES
-$produk = "";
-$produk_nama = "";
-$produk_harga = "";
-$produk_stock = "";
+// Create new transaksi id
+do {
+	$transaksi_id = "TRX-".strtoupper(bin2hex(random_bytes(3)));
+} while (sizeof(queryRead("SELECT * FROM laporan_transaksi WHERE id='$transaksi_id'")) > 0);
 
-
-if (isset($_GET["id"])) {
-	$transaksi_id = $_GET["id"];
-	$transaksi = queryRead("SELECT * FROM laporan_transaksi WHERE id = '$transaksi_id'")[0];
-	$transaksi_tanggal = $transaksi["tanggal"];
-	$transaksi_total = $transaksi["total"];
-	$transaksi_bayar = $transaksi["bayar"];
-	$transaksi_kembalian = $transaksi["kembalian"];
-} else {
-	// Create new transaksi id
-	do {
-		$transaksi_id = "TRX-".strtoupper(bin2hex(random_bytes(3)));
-	} while (sizeof(queryRead("SELECT * FROM laporan_transaksi WHERE id='$transaksi_id'")) > 0);
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,7 +43,7 @@ if (isset($_GET["id"])) {
 							<label for="id-produk">ID Produk : </label>
 						</th>
 						<td>
-							<input type="text" id="id-produk" style="width: 80%;" value="<?= isset($produk_id) ? $produk_id : ""; ?>" required>
+							<input type="text" id="id-produk" style="width: 80%;" required>
 							<button onclick="searchProduk()" id="btn-search" class="btn btn-search"><i class="fas fa-search"></i></button>
 						</td>
 					</tr>
@@ -73,7 +53,7 @@ if (isset($_GET["id"])) {
 							<label for="nama-produk">Nama Produk : </label>
 						</th>
 						<td>
-							<input type="text" id="nama-produk" class="readonly" value="<?= $produk_nama; ?>" readonly required>
+							<input type="text" id="nama-produk" class="readonly" readonly required>
 						</td>
 					</tr>
 					<tr>
@@ -81,7 +61,7 @@ if (isset($_GET["id"])) {
 							<label for="harga">Harga (Rp) : </label>
 						</th>
 						<td>
-							<input type="text" id="harga" class="readonly" value="<?= $produk_harga; ?>" readonly required>
+							<input type="text" id="harga" class="readonly" readonly required>
 						</td>
 					</tr>
 					<tr>
@@ -90,7 +70,7 @@ if (isset($_GET["id"])) {
 						</th>
 						<td>
 							<input type="number" onchange="hitungSubTotal()" onkeyup="hitungSubTotal()" min="1" id="quantity" style="width: 41%" <?php if (isset($produk_id)): ?> required <?php endif ?>>
-							<input type="text" id="stock" class="readonly" style="width: 40%" value="<?= $produk_stock; ?>" readonly>
+							<input type="text" id="stock" class="readonly" style="width: 40%" readonly>
 						</td>
 					</tr>
 					<tr>
@@ -132,7 +112,7 @@ if (isset($_GET["id"])) {
 								<label for="total">Total (Rp) : </label>
 							</th>
 							<td>
-								<input type="text" id="total" name="total" class="readonly" value="<?= $transaksi_total; ?>" readonly>
+								<input type="text" id="total" name="total" class="readonly" readonly>
 							</td>
 						</tr>
 						<tr>
@@ -140,7 +120,7 @@ if (isset($_GET["id"])) {
 								<label for="bayar">Bayar (Rp) : </label>
 							</th>
 							<td>
-								<input onchange="hitungKembalian()" onkeyup="hitungKembalian()" type="number" id="bayar" name="bayar" value="<?= $transaksi_bayar; ?>" required>
+								<input onchange="hitungKembalian()" onkeyup="hitungKembalian()" type="number" id="bayar" name="bayar" required>
 							</td>
 						</tr>
 						<tr>
@@ -148,7 +128,7 @@ if (isset($_GET["id"])) {
 								<label for="kembalian">Kembalian (Rp) : </label>
 							</th>
 							<td>
-								<input type="text" id="kembalian" name="kembalian" class="readonly" value="<?= $transaksi_kembalian; ?>" readonly>
+								<input type="text" id="kembalian" name="kembalian" class="readonly" readonly>
 							</td>
 						</tr>
 					</table>
