@@ -183,7 +183,7 @@ $produk = queryRead("SELECT * FROM produk ORDER BY nama LIMIT $awalData, $jumlah
 							</tr>
 							<tr>
 								<th>
-									<label for="nama-produk">Nama Produk : </label>
+									<label for="nama-produk">Nama : </label>
 								</th>
 								<td>
 									<input type="text" id="nama-produk" name="nama-produk" required>
