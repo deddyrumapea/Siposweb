@@ -64,7 +64,7 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC LI
 						<td>Rp<?=number_format($row["total"], 0, ",", "."); ?></td>
 						<td>Rp<?=number_format($row["bayar"], 0, ",", "."); ?></td>
 						<td>Rp<?=number_format($row["kembalian"], 0, ",", "."); ?></td>
-						<td>
+						<td style="text-align: center;">
 							<a href="transaksi.php?id=<?= $row["id"]; ?>" class="action-edit"><i class="far fa-eye"></i> Lihat</a> 
 							<a id="btn-hapus-transaksi" href="#" class="action-hapus" onclick="hapusTransaksi('<?= $row["id"];?>')"><i class="fas fa-trash"></i> Hapus</a>
 						</td>
