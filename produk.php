@@ -30,7 +30,7 @@ if (isset($_POST["edit_produk_btn"])) {
 }
 
 // Menampilkan list produk
-$produk = queryRead("SELECT * FROM produk");
+$produk = queryRead("SELECT * FROM produk ORDER BY nama");
 ?>
 <!DOCTYPE html>
 <html>

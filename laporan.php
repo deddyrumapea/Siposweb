@@ -1,6 +1,6 @@
 <?php 
 require 'functions/functions.php';
-$transaksi = queryRead("SELECT * FROM laporan_transaksi");
+$transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC");
 ?>
 
 <!DOCTYPE html>
