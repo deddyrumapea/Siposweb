@@ -304,28 +304,24 @@ input {
 /* START ACTION BUTTON */
 
 .action-hapus,
-.action-edit {
+.action-edit,
+.action-detail
+{
 	text-decoration: none;
+	color: white;
+	padding: 4px;
+	margin: 5px;
+	font-size: 13px;
+	border-radius: 2px;
 }
 
 .action-hapus {
 	background-color: #e74c3c;
-	color: white;
-	padding: 4px;
-	margin: 5px;
-	font-size: 13px;
-	border-radius: 2px;
 }
 
-.action-edit {
+.action-edit, .action-detail {
 	background-color: #2980b9;
-	color: white;
-	padding: 4px;
-	margin: 5px;
-	font-size: 13px;
-	border-radius: 2px;
 }
-
 
 /* END ACTION BUTTON */
 
