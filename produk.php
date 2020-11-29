@@ -86,7 +86,7 @@ $produk = queryRead("SELECT * FROM produk ORDER BY nama LIMIT $awalData, $jumlah
 							<i class="far fa-copy" style="color: lightgrey; margin-right: 5px;"></i><?=$row["id"]; ?>
 						</td>
 						<td><?=$row["nama"]; ?></td>
-						<td>Rp<?=number_format($row["harga"], 2, ",", "."); ?></td>
+						<td>Rp<?=number_format($row["harga"], 0, ",", "."); ?></td>
 						<td><?=$row["stock"]; ?></td>
 						<td>
 							<a href="#" class="action-edit" onclick="var data = ['<?= $row["id"]; ?>', '<?=$row["nama"]; ?>', <?= $row["harga"] ?>, <?=$row["stock"]; ?>]; editProduk(data);"><i class="fas fa-edit"></i> Edit</a> 
