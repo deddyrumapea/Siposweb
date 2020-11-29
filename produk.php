@@ -30,7 +30,7 @@ if (isset($_POST["edit_produk_btn"])) {
 }
 
 // Menampilkan list produk
-$jumlahDataPerHalaman = 15;
+$jumlahDataPerHalaman = (isset($_GET["count"]))? $_GET["count"] : 15;
 $jumlahData = (int) queryRead("SELECT COUNT(id) AS jumlah_data FROM produk")[0]["jumlah_data"];
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
 $halamanAktif = (isset($_GET["page"])) ? $_GET["page"] : 1;
@@ -62,8 +62,8 @@ $produk = queryRead("SELECT * FROM produk ORDER BY nama LIMIT $awalData, $jumlah
 
 	<main>
 		<div class="content-produk">
-			<form action="" class="form-data-count">
-				<input type="text" value="15" class="input-data-count" id="input-data-count">
+			<form action="" method="get" class="form-data-count">
+				<input type="text" value="<?= $jumlahDataPerHalaman; ?>" class="input-data-count" id="input-data-count" name="count">
 				<label for="input-data-count"> data per halaman</label>
 			</form>
 			<button class="btn btn-tambahkan-produk" id="btn-tambahkan-produk"><i class="fas fa-plus-circle"></i> Tambah Produk</i></button>
@@ -83,7 +83,7 @@ $produk = queryRead("SELECT * FROM produk ORDER BY nama LIMIT $awalData, $jumlah
 					<tr>
 						<td><?= $i; ?></td>
 						<td onclick="copyIdProduk(this)" style="cursor: pointer;">
-							<i class="far fa-copy" style="opacity: 20%; margin-right: 5px;"></i><?=$row["id"]; ?>
+							<i class="far fa-copy" style="color: lightgrey; margin-right: 5px;"></i><?=$row["id"]; ?>
 						</td>
 						<td><?=$row["nama"]; ?></td>
 						<td>Rp<?=number_format($row["harga"], 2, ",", "."); ?></td>
@@ -97,13 +97,13 @@ $produk = queryRead("SELECT * FROM produk ORDER BY nama LIMIT $awalData, $jumlah
 				<?php endforeach; ?>
 
 			</table>
-			<a href="<?= ($halamanAktif > 1) ? "?page=".($halamanAktif - 1) : "#"; ?>" class="btn btn-page-nav"><i class="fas fa-angle-left"></i> Sebelumnya</a>
+			<a href="<?= ($halamanAktif > 1) ? "?count=$jumlahDataPerHalaman&page=".($halamanAktif - 1) : "#"; ?>" class="btn btn-page-nav"><i class="fas fa-angle-left"></i> Sebelumnya</a>
 			<?php for($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-				<a href="?page=<?= $i; ?>" class="btn btn-page-nav <?php if($i == $halamanAktif): ?>number-active<?php endif; ?>">
+				<a href="?count=<?= $jumlahDataPerHalaman; ?>&page=<?= $i; ?>" class="btn btn-page-nav <?php if($i == $halamanAktif): ?>number-active<?php endif; ?>">
 					<?= $i; ?>
 				</a>
 			<?php endfor; ?>
-			<a href="<?= ($halamanAktif < $jumlahHalaman) ? "?page=".($halamanAktif + 1) : "#"; ?>" class="btn btn-page-nav">Selanjutnya <i class="fas fa-angle-right"></i></a>
+			<a href="<?= ($halamanAktif < $jumlahHalaman) ? "?count=$jumlahDataPerHalaman&page=".($halamanAktif + 1) : "#"; ?>" class="btn btn-page-nav">Selanjutnya <i class="fas fa-angle-right"></i></a>
 		</div>
 
 		<div id="modal-tambah-produk" class="modal">
