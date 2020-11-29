@@ -81,7 +81,7 @@ $produk = queryRead("SELECT * FROM produk ORDER BY nama LIMIT $awalData, $jumlah
 				<?php $i = ($halamanAktif == 1) ? 1 : ($halamanAktif - 1) * $jumlahDataPerHalaman + 1; ?>
 				<?php foreach ($produk as $row) : ?>
 					<tr>
-						<td><?= $i; ?></td>
+						<td style="text-align: center;"><?= $i; ?></td>
 						<td onclick="copyIdProduk(this)" style="cursor: pointer;">
 							<i class="far fa-copy" style="color: lightgrey; margin-right: 5px;"></i><?=$row["id"]; ?>
 						</td>

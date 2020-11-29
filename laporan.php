@@ -58,7 +58,7 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC LI
 				<?php $i = ($halamanAktif == 1) ? 1 : ($halamanAktif - 1) * $jumlahDataPerHalaman + 1; ?>
 				<?php foreach ($transaksi as $row) : ?>
 					<tr>
-						<td><?= $i ?></td>
+						<td style="text-align: center;"><?= $i ?></td>
 						<td onclick="copyIdTransaksi(this)" style="cursor: pointer;"><i class="far fa-copy" style="color: lightgrey; margin-right: 5px;"></i><?= $row["id"]; ?></td>
 						<td><?= $row["tanggal"]; ?></td>
 						<td>Rp<?=number_format($row["total"], 0, ",", "."); ?></td>
