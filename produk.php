@@ -30,7 +30,13 @@ if (isset($_POST["edit_produk_btn"])) {
 }
 
 // Menampilkan list produk
-$produk = queryRead("SELECT * FROM produk ORDER BY nama");
+$jumlahDataPerHalaman = 15;
+$jumlahData = (int) queryRead("SELECT COUNT(id) AS jumlah_data FROM produk")[0]["jumlah_data"];
+$jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
+$halamanAktif = (isset($_GET["page"])) ? $_GET["page"] : 1;
+$awalData = $jumlahDataPerHalaman * ($halamanAktif - 1);
+
+$produk = queryRead("SELECT * FROM produk ORDER BY nama LIMIT $awalData, $jumlahDataPerHalaman");
 ?>
 <!DOCTYPE html>
 <html>
@@ -72,11 +78,13 @@ $produk = queryRead("SELECT * FROM produk ORDER BY nama");
 					<th>Aksi</th>
 				</tr>
 
-				<?php $i = 1; ?>
+				<?php $i = ($halamanAktif == 1) ? 1 : ($halamanAktif - 1) * $jumlahDataPerHalaman + 1; ?>
 				<?php foreach ($produk as $row) : ?>
 					<tr>
 						<td><?= $i; ?></td>
-						<td><?=$row["id"]; ?></td>
+						<td onclick="copyIdProduk(this)" style="cursor: pointer;">
+							<i class="far fa-copy" style="opacity: 20%; margin-right: 5px;"></i><?=$row["id"]; ?>
+						</td>
 						<td><?=$row["nama"]; ?></td>
 						<td>Rp<?=number_format($row["harga"], 2, ",", "."); ?></td>
 						<td><?=$row["stock"]; ?></td>
@@ -89,8 +97,13 @@ $produk = queryRead("SELECT * FROM produk ORDER BY nama");
 				<?php endforeach; ?>
 
 			</table>
-			<button class="btn btn-page-nav"><i class="fas fa-angle-left"></i> Sebelumnya</button>
-			<button class="btn btn-page-nav">Selanjutnya <i class="fas fa-angle-right"></i></button>
+			<a href="<?= ($halamanAktif > 1) ? "?page=".($halamanAktif - 1) : "#"; ?>" class="btn btn-page-nav"><i class="fas fa-angle-left"></i> Sebelumnya</a>
+			<?php for($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+				<a href="?page=<?= $i; ?>" class="btn btn-page-nav <?php if($i == $halamanAktif): ?>number-active<?php endif; ?>">
+					<?= $i; ?>
+				</a>
+			<?php endfor; ?>
+			<a href="<?= ($halamanAktif < $jumlahHalaman) ? "?page=".($halamanAktif + 1) : "#"; ?>" class="btn btn-page-nav">Selanjutnya <i class="fas fa-angle-right"></i></a>
 		</div>
 
 		<div id="modal-tambah-produk" class="modal">

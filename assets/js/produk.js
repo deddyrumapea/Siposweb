@@ -57,3 +57,13 @@ window.onclick = function(event) {
 		}
 	}
 }
+
+// Copy id produk
+function copyIdProduk(produk){
+	var idProduk = document.createElement("textarea");
+    document.body.appendChild(idProduk);
+    idProduk.value = produk.innerText;
+    idProduk.select();
+    document.execCommand("copy");
+    document.body.removeChild(idProduk);
+}

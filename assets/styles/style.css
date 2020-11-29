@@ -119,8 +119,10 @@ input {
 .btn-tambah-produk,
 .btn-check-out,
 .btn-edit-produk,
-.btn-page-nav {
-	margin-top: 10px;
+.btn-page-nav,
+.number-active:hover{
+	font-size: 14px;
+	margin: 20px 1px;
 	background-color: white;
 	color: #F47216;
 }
@@ -128,7 +130,8 @@ input {
 .btn-tambah-produk:hover,
 .btn-check-out:hover,
 .btn-edit-produk:hover,
-.btn-page-nav:hover {
+.btn-page-nav:hover,
+.number-active {
 	background-color: #F47216;
 	color: white;
 }
@@ -199,6 +202,7 @@ input {
 .table-produk,
 .table-laporan {
 	margin: auto;
+	margin-bottom: 25px;
 	width: 100%;
 }
 
