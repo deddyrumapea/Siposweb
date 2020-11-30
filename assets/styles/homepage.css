@@ -1,5 +1,5 @@
 body{
-	background:url(/Siposweb/assets/images/homepage.jpg)no-repeat;
+	background:url(../images/homepage.jpg)no-repeat;
 	background-size: cover;
 	font-family: calibri;
 	/*background: linear-gradient(to bottom right, #568ae3, white);*/
