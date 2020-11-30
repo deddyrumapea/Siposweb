@@ -18,6 +18,7 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC LI
 	<link rel="shortcut icon" type="image/ico" href="assets/images/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="assets/styles/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -59,13 +60,16 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC LI
 				<?php foreach ($transaksi as $row) : ?>
 					<tr>
 						<td style="text-align: center;"><?= $i ?></td>
-						<td onclick="copyIdTransaksi(this)" style="cursor: pointer;"><i class="far fa-copy" style="color: lightgrey; margin-right: 5px;"></i><?= $row["id"]; ?></td>
+						<td onclick="copyIdTransaksi(this)" style="cursor: pointer;">
+							<i class="far fa-copy" style="color: lightgrey; margin-right: 5px;"></i>
+							<?= $row["id"]; ?>
+						</td>
 						<td><?= $row["tanggal"]; ?></td>
 						<td>Rp<?=number_format($row["total"], 0, ",", "."); ?></td>
 						<td>Rp<?=number_format($row["bayar"], 0, ",", "."); ?></td>
 						<td>Rp<?=number_format($row["kembalian"], 0, ",", "."); ?></td>
 						<td style="text-align: center;">
-							<a href="transaksi.php?id=<?= $row["id"]; ?>" class="action-detail"><i class="far fa-eye"></i> Detail</a> 
+							<a href="#" class="action-detail" onclick="showDetail('<?= $row["id"]; ?>')"><i class="far fa-eye"></i> Detail</a>
 							<a id="btn-hapus-transaksi" href="#" class="action-hapus" onclick="hapusTransaksi('<?= $row["id"];?>')"><i class="fas fa-trash"></i> Hapus</a>
 						</td>
 					</tr>
@@ -91,6 +95,69 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC LI
 					<button class="btn btn-batal" id="btn-confirmation">Batal</button>
 					<a id="btn-confirm-hapus"><button class="btn btn-hapus">Hapus</button></a>
 				</div>
+			</div>
+		</div>
+
+		<div id="modal-laporan" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content cf">
+				<div class="form-penambahan-produk">
+					<form action="" method="">
+						<table>
+							<tr>
+								<th>
+									<label for="id-transaksi">ID Transaksi : </label>
+								</th>
+								<td>
+									<input type="text" id="id-transaksi" name="id-transaksi"  class="readonly" readonly>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="tanggal">Tanggal : </label>
+								</th>
+								<td>
+									<input type="text" id="tanggal" name="tanggal" class="readonly" readonly>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="total">Total : </label>
+								</th>
+								<td>
+									<input type="text" id="total" name="total" class="readonly" readonly>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="bayar">Bayar : </label>
+								</th>
+								<td>
+									<input type="text" id="bayar" name="bayar" class="readonly"  readonly>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="kembalian">Kembalian : </label>
+								</th>
+								<td>
+									<input type="text" id="kembalian" name="kembalian" class="readonly" readonly>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<table id="tabel-produk-dibeli" class="table-laporan" style="margin: 20px 0 0">
+					<thead>
+						<tr>
+							<th>ID Produk</th>
+							<th>Nama Produk</th>
+							<th>Quantity</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<button onclick="tutupModal();" class="btn btn-check-out" id="close-modal"><i class="fas fa-check-circle"></i> Tutup</button>
 			</div>
 		</div>
 	</main>
