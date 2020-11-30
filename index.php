@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Selamat datang di SIPOSWEB</title>
+	<link rel="shortcut icon" type="image/ico" href="assets/images/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="assets/styles/homepage.css">
 </head>
 <body>
