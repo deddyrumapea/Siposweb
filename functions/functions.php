@@ -47,4 +47,24 @@ function hapusTransaksi($id) {
 	return mysqli_affected_rows($conn);
 }
 
+function registrasi($data){
+	global $conn;
+
+	$username = strtolower(stripcslashes($data["username"]));
+	$password = mysqli_real_escape_string($conn, $data["password"]);
+	$password1 = mysqli_real_escape_string($conn, $data["password1"]);
+
+	if($password !== $password1){
+		echo "<script>alert('Konfirmasi Password tidak sesuai!')</script>";
+		return false;
+	}
+
+	$password = password_hash($password, PASSWORD_DEFAULT);
+
+	mysqli_query($conn, "INSERT INTO user VALUES('$username', '$password')");
+
+	return mysqli_affected_rows($conn);
+
+}
+
 ?>
