@@ -1,4 +1,11 @@
 <?php 
+session_start();
+
+if( !isset($_SESSION["login"]) ){
+	header("Location: index.php");
+	exit();
+} 
+
 require 'functions/functions.php';
 
 // Create new transaksi tanggal
@@ -29,7 +36,8 @@ do {
 				<li><a class="active" href="transaksi.php"><i class="fa fa-shopping-cart"></i> Transaksi</a></li>
 				<li><a href="produk.php"><i class="fas fa-box-open"></i> Produk</a></li>
 				<li><a href="laporan.php"><i class="fas fa-clipboard-list"></i> Laporan</a></li>
-				<li><a href="#"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+				<li><a href="Pengaturan.php"><i class="fas fa-user-cog"></i> Pengaturan</a></li>
+				<li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
 			</ul>
 		</nav>
 	</header>
