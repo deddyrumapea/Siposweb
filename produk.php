@@ -37,7 +37,7 @@ if (isset($_POST["edit_produk_btn"])) {
 }
 
 // Menampilkan list produk
-$jumlahDataPerHalaman = (isset($_GET["count"]))? $_GET["count"] : 15;
+$jumlahDataPerHalaman = (isset($_GET["count"]) && $_GET["count"] >= 5)? $_GET["count"] : 15;
 $jumlahData = (int) queryRead("SELECT COUNT(id) AS jumlah_data FROM produk")[0]["jumlah_data"];
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
 $halamanAktif = (isset($_GET["page"])) ? $_GET["page"] : 1;
