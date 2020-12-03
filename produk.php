@@ -71,7 +71,7 @@ $produk = queryRead("SELECT * FROM produk ORDER BY nama LIMIT $awalData, $jumlah
 	<main>
 		<div class="content-produk">
 			<form action="" method="get" class="form-data-count">
-				<input type="text" value="<?= $jumlahDataPerHalaman; ?>" class="input-data-count" id="input-data-count" name="count">
+				<input type="number" min="5" value="<?= $jumlahDataPerHalaman; ?>" class="input-data-count" id="input-data-count" name="count">
 				<label for="input-data-count"> data per halaman</label>
 			</form>
 			<button class="btn btn-tambahkan-produk" id="btn-tambahkan-produk"><i class="fas fa-plus-circle"></i> Tambah Produk</i></button>

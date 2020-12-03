@@ -44,7 +44,7 @@ $transaksi = queryRead("SELECT * FROM laporan_transaksi ORDER BY tanggal DESC LI
 	<main>
 		<div class="content-laporan">
 			<form action="" method="get" class="form-data-count">
-				<input type="text" value="<?= $jumlahDataPerHalaman; ?>" class="input-data-count" id="input-data-count" name="count">
+				<input type="number" min="5" value="<?= $jumlahDataPerHalaman; ?>" class="input-data-count" id="input-data-count" name="count">
 				<label for="input-data-count"> data per halaman</label>
 			</form>
 			<a href="transaksi.php">
